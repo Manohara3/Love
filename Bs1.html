@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Day Countdown</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0e6f6;
+            font-family: 'Poppins', Arial, sans-serif;
+            text-align: center;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            font-size: 2em;
+            color: #8e44ad;
+            margin-bottom: 20px;
+        }
+
+        #surpriseButton {
+            display: none;  /* Hide the button initially */
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #8e44ad;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #surpriseButton:hover {
+            background-color: #7e3794;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Countdown to a Special Day!</h1>
+        <div id="countdown">
+            <p id="timeLeft">Loading...</p>
+        </div>
+        <button id="surpriseButton" onclick="redirectToLink()">Go to the Surprise</button>
+    </div>
+
+    <script>
+        const specialDay = new Date('September 19, 2024 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = specialDay - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('timeLeft').innerHTML = `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds left until the special day!`;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = "It's the special day!";
+                document.getElementById('surpriseButton').style.display = "inline-block";  // Show the button after the countdown ends
+            }
+        }
+
+        let countdownInterval = setInterval(updateCountdown, 1000);
+
+        function redirectToLink() {
+            window.location.href = "https://www.example.com";  // Replace with your actual link
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sreethunga!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@700&family=Allura&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Great Vibes', cursive;
+            text-align: center;
+            color: #333;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+        }
+
+        .container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            position: relative;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #d32f2f;
+            margin-bottom: 20px;
+            font-family: 'Allura', cursive;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        #birthdayMessage {
+            display: block;
+        }
+
+        #question, #finalMessage, #repeatWish {
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #8e44ad;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        button:hover {
+            background-color: #7e3794;
+        }
+
+        #finalMessage {
+            font-size: 2em;
+            color: #d32f2f;
+            margin-top: 20px;
+            animation: heartbeat 1.5s infinite;
+            font-family: 'Allura', cursive;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        #hearts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #hearts h1 {
+            display: flex;
+            align-items: center;
+        }
+
+        #hearts h1:before,
+        #hearts h1:after {
+            content: '❤️';
+            margin: 0 10px;
+            font-size: 1.5em;
+        }
+
+        .flower {
+            position: absolute;
+            top: -50px;
+            font-size: 2em;
+            animation: fall 5s infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .flower:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .flower:nth-child(3) { left: 40%; animation-delay: 4s; }
+        .flower:nth-child(4) { left: 60%; animation-delay: 1s; }
+        .flower:nth-child(5) { left: 80%; animation-delay: 3s; }
+
+        .cake {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="flower">🌸</div>
+    <div class="flower">🌷</div>
+    <div class="flower">🌹</div>
+    <div class="flower">🌼</div>
+    <div class="flower">🌻</div>
+
+    <div class="container">
+        <div id="hearts">
+            <h1 id="birthdayMessage">HAPPY BIRTHDAY SREETHUNGA</h1>
+        </div>
+        <div class="cake">🎂 🎂 🎂</div>
+        <button id="nextButton" onclick="showQuestions()">Next</button>
+        <div id="question">
+            <p id="qText">You make every day special just by being yourself.</p>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+        <div id="finalMessage">
+            <p>Isn't the 🌙 beautiful❤️!</p>
+        </div>
+        <div id="repeatWish">
+            <p>I wished you earlier, but I wanted to remind you again how special you are. Happy Birthday once more, because once just isn't enough for someone as amazing as you! 🎂❤️</p>
+        </div>
+        <audio id="romanticMusic" src="" preload="auto"></audio>
+    </div>
+
+    <script>
+        let questions = [
+            "You make every day special just by being yourself.",
+            "My heart beats faster every time I think of you.",
+            "You are my today, and all of my tomorrows.", 
+            "Hey, I was thinking it would be nice to meet up at the same place where we met yesterday.", 
+            "And I would like to tell a secret to you"
+        ];
+
+        let currentQuestion = 0;
+
+        function showQuestions() {
+            document.getElementById('birthdayMessage').style.display = 'none';
+            document.getElementById('hearts').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'none';
+            document.getElementById('question').style.display = 'block';
+            document.getElementById('romanticMusic').play();
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                document.getElementById('qText').innerText = questions[currentQuestion];
+            } else {
+                document.getElementById('question').style.display = 'none';
+                document.getElementById('finalMessage').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('finalMessage').style.display = 'none';
+                    document.getElementById('repeatWish').style.display = 'block';
+                }, 4000); // Adjust the delay as needed
+            }
+        }
+    </script>
+</body>
+</html>
